@@ -14,6 +14,8 @@ Our goal will be train a model to classify a given microbiome sample as having o
 
 In the following, I classify species abundance samples into 'Obesity' vs 'Type 2 Diabetes' given only 3 labeled examples for each, and by training on the data for the remaining diseases. Guided by the performance comparison of different model architechtures on a similar task [studied here](https://www.nature.com/articles/s41598-019-46649-z), I use a single hidden layer Multi-Layer Perceptron with 128 neurons.
 
+I use the idea of derivative-order annealing from the paper ["How to train your MAML"](https://arxiv.org/abs/1810.09502), and use first-order MAML for the first 20% of the epochs and use second-order MAML for the rest. 
+
 The model achieves an impressive performance comparable to the best previous results on this dataset, with an accuracy (> 80 %), an F1 score (> 0.8), an ROC AUC score (> 0.8), and a Confusion Matrix ~((8x, x),(x, 8x)).
 
 It is worth noting that the validation and training data in this case have no disease classes in common, and that both are balanced, i.e. have equal numbers of samples for each disease.
