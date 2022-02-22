@@ -12,15 +12,15 @@ In a practical setting, one may not have access to many samples from patients wi
 
 Our goal will be train a model to classify a given microbiome sample as having one of two previously unseen diseases (not present in the training set), from only a few labeled examples for each of the two diseases. I use a recent elegant and general algorithm known as [Model Agnostic Meta-Learning algorithm](https://arxiv.org/abs/1703.03400) to learn to classify the species abundance data into two unseen disease classes, given only 3 labeled examples, i.e. the 3-shot 2-way classification task. 
 
-In the following, I classify species abundance samples into 'Obesity' vs 'Type 2 Diabetes' given only 3 labeled examples for each, and by training on the data for the remaining diseases. Guided by the performance comparison of different model architechtures on a similar task [studied here](https://www.nature.com/articles/s41598-019-46649-z), I use a single hidden layer Multi-Layer Perceptron with 128 neurons.
+In the following, I classify species abundance samples into two previously unseen disease labels ('impaired glucose tolerance' vs 'cirrhosis' for the validation dataset, and 'obesity' vs 'cancer' for the test dataset) given only 3 labeled examples for each, and by training on the data for the remaining diseases. Guided by the performance comparison of different model architechtures on a similar task studied here, I use a single hidden layer Multi-Layer Perceptron with 128 neurons.
 
 I use the idea of derivative-order annealing from the paper ["How to train your MAML"](https://arxiv.org/abs/1810.09502), and use first-order MAML for the first 20% of the epochs and use second-order MAML for the rest. 
 
-The model achieves an impressive performance comparable to the best previous results on this dataset, with an accuracy (> 80 %), an F1 score (> 0.8), an ROC AUC score (> 0.8), and a Confusion Matrix ~((8x, x),(x, 8x)).
+The model achieves an impressive performance better than the best previous results on this dataset, with an accuracy (> 85 %), an F1 score (> 0.85), an ROC AUC score (> 0.85), and a Confusion Matrix ~((8.5x, x),(x, 8.5x)).
 
-It is worth noting that the validation and training data in this case have no disease classes in common, and that both are balanced, i.e. have equal numbers of samples for each disease.
+It is worth noting that the validation, testing and training data have no disease classes in common.
 
-Different seed choices lead to different choices of diseases for testing. 
+Different seed choices lead to different choices of diseases for testing.
 
 I build on the previous notebooks using this [metagenomics dataset](https://www.kaggle.com/antaresnyc/metagenomics): 
 * [sklasfeld/starter-metagenomics](https://www.kaggle.com/sklasfeld/starter-metagenomics)
